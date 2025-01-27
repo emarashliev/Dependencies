@@ -9,9 +9,12 @@ import Foundation
 
 @propertyWrapper
 public struct Dependency<Value>: Sendable {
+    let initialValues: DependencyValues
+
     private let keyPath: KeyPath<DependencyValues, Value> & Sendable
 
     public init(_ keyPath: KeyPath<DependencyValues, Value> & Sendable) {
+        self.initialValues = DependencyValues.current
         self.keyPath = keyPath
     }
 
